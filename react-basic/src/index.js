@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import HelloComponent from './component/HelloComponent'
+// create component
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+// function HelloComponent(){
+//   return <h1>Component</h1>
+// }
+
+// class HelloComponent extends React.Component{
+//   render(){
+//     return <h1>hello component</h1>
+//   }
+// }
+
+ReactDOM.render(<HelloComponent/>,
   document.getElementById('root')
 );
 
