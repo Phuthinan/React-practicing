@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import HelloComponent from './component/HelloComponent'
+import App from './App'
 // create component
 
 // function HelloComponent(){
@@ -15,7 +15,7 @@ import HelloComponent from './component/HelloComponent'
 //   }
 // }
 
-ReactDOM.render(<HelloComponent/>,
+ReactDOM.render(<App/>,
   document.getElementById('root')
 );
 
