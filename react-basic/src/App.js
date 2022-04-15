@@ -1,25 +1,12 @@
+import Transaction from "./component/Transaction";
 
-const Title =()=><h1>โปรแกรมรายรับ รายจ่าย</h1>
-const Description =()=><p>บันทึกข้อมูลในแต่ละวัน</p>
 
-const Item = ()=><li>ค่าเดินทาง <span>-200</span></li>
-
-const Transaction = () => {
-  return (
-    <ul>
-      <Item/>
-      <li>เงินเดือน <span>+20000</span></li>
-      <li>อาหาร <span>-300</span></li>
-    </ul>
-  );
-}
 function App() {
+  const design = {color:'red',textAlign:"center",fontSize:"1.5rem"}
   return (
     <div>
-      <Title/>
-      <Description/>
+      <h1 style={design}>รายรับ รายจ่าย</h1>
       <Transaction/>
-
     </div>
     );
 }
