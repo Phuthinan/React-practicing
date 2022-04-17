@@ -1,11 +1,16 @@
-import './Item.css'
+import PropTypes from 'prop-types';
 
-const Item = ()=>{
-    const name = "Hotel"
-    const amount = 5000
+const Item = (props)=>{
+
+    const {title,amount}=props
     return   (
-        <li className='item'>{name}<span>-{amount}</span></li>
+        <li>{title}<span>{amount}</span></li>
         );
+}
+
+Item.propTypes={
+    title:PropTypes.string.isRequired,
+    amount:PropTypes.number.isRequired
 }
 
 export default Item;

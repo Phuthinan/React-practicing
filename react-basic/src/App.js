@@ -1,11 +1,11 @@
 import Transaction from "./component/Transaction";
-
+import './App.css'
 
 function App() {
   const design = {color:'red',textAlign:"center",fontSize:"1.5rem"}
   return (
-    <div>
-      <h1 style={design}>รายรับ รายจ่าย</h1>
+    <div className="container">
+      <h1 style={design}>บัญชี รายรับ รายจ่าย</h1>
       <Transaction/>
     </div>
     );
