@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import './Item.css'
-import DataContext from '../data/DataContext';
 
 const Item = (props)=>{
 
