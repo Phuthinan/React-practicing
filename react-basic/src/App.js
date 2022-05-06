@@ -1,7 +1,7 @@
 import Transaction from "./component/Transaction";
 import './App.css'
 import FormComponent from "./component/FormComponent";
-import { useState,useEffect } from "react";
+import { useState,useEffect, useReducer } from "react";
 import DataContext from "./data/DataContext.js";
 import ReportComponent from "./component/ReportComponent";
 
@@ -32,20 +32,40 @@ function App() {
     setReportIncome(income)
     setReportExpense(expense)
   },[items,reportIncome,reportExpense])
+
+  //reducer state
+  const [count,setCount]=useState(0)
+  const reducer = (state,action)=>{
+    switch(action.type){
+      case "ADD" : 
+        return state+action.payload
+      case "SUB" :
+        return state-action.payload
+      case "CLEAR" :
+        return 0
+    }
+  }
+  const [result,dispatch] =useReducer(reducer,count)
   return (
-     <DataContext.Provider value={
-       {
-        income:reportIncome,
-        expense:reportExpense
-       }
-     }>
-       <div className="container">
-        <h1 style={design}>บัญชี รายรับ รายจ่าย</h1>
-        <ReportComponent/>
-        <FormComponent onAddItem={onAddNewItem}/>
-        <Transaction items = {items}/>
-      </div>
-     </DataContext.Provider>
+    //  <DataContext.Provider value={
+    //    {
+    //     income:reportIncome,
+    //     expense:reportExpense
+    //    }
+    //  }>
+    //    <div className="container">
+    //     <h1 style={design}>บัญชี รายรับ รายจ่าย</h1>
+    //     <ReportComponent/>
+    //     <FormComponent onAddItem={onAddNewItem}/>
+    //     <Transaction items = {items}/>
+    //   </div>
+    //  </DataContext.Provider>
+    <div align="center">
+      <h1>{result}</h1>
+      <button onClick={()=>dispatch({type:"ADD",payload:10})}>เพิ่ม</button>
+      <button onClick={()=>dispatch({type:"SUB",payload:5})}>ลด</button>
+      <button onClick={()=>dispatch({type:"CLEAR"})}>ล้าง</button>
+    </div>
     );
 }
 export default App;
