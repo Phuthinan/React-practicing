@@ -4,6 +4,12 @@ import FormComponent from "./component/FormComponent";
 import { useState,useEffect, useReducer } from "react";
 import DataContext from "./data/DataContext.js";
 import ReportComponent from "./component/ReportComponent";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Routes,
+} from 'react-router-dom';
 
 function App() {
   const design = {color:'red',textAlign:"center",fontSize:"1.5rem"}
@@ -34,38 +40,60 @@ function App() {
   },[items,reportIncome,reportExpense])
 
   //reducer state
-  const [count,setCount]=useState(0)
+  const [showReport,setShowReport]=useState(false)
   const reducer = (state,action)=>{
     switch(action.type){
-      case "ADD" : 
-        return state+action.payload
-      case "SUB" :
-        return state-action.payload
-      case "CLEAR" :
-        return 0
+      case "SHOW" : 
+        return setShowReport(true)
+      case "HIDE" :
+        return setShowReport(false)
     }
   }
-  const [result,dispatch] =useReducer(reducer,count)
+  const [result,dispatch] =useReducer(reducer,showReport)
   return (
-    //  <DataContext.Provider value={
-    //    {
-    //     income:reportIncome,
-    //     expense:reportExpense
-    //    }
-    //  }>
-    //    <div className="container">
-    //     <h1 style={design}>บัญชี รายรับ รายจ่าย</h1>
-    //     <ReportComponent/>
-    //     <FormComponent onAddItem={onAddNewItem}/>
-    //     <Transaction items = {items}/>
-    //   </div>
-    //  </DataContext.Provider>
-    <div align="center">
-      <h1>{result}</h1>
-      <button onClick={()=>dispatch({type:"ADD",payload:10})}>เพิ่ม</button>
-      <button onClick={()=>dispatch({type:"SUB",payload:5})}>ลด</button>
-      <button onClick={()=>dispatch({type:"CLEAR"})}>ล้าง</button>
-    </div>
+     <DataContext.Provider value={
+       {
+        income:reportIncome,
+        expense:reportExpense
+       }
+     }>
+       <div className="container">
+        <h1 style={design}>โปรแกรม บัญชี รายรับ รายจ่าย</h1>
+        <Router>
+        <div>
+          <ul className="horizontal-menu">
+            <li>
+              <Link to="/">ข้อมูลบัญชี</Link>
+            </li>
+            <li>
+              <Link to="/insert">บันทึกข้อมูล</Link>
+            </li>
+          </ul>
+          <Routes>
+            <Route exact path="/" element={<ReportComponent/>}/>
+            <Route exact path="/insert" element={
+            <div>
+              <FormComponent onAddItem={onAddNewItem}/>
+              <Transaction items = {items}/>
+              </div>
+            }/>
+              
+            {/* <Route path="/insert">
+              <FormComponent onAddItem={onAddNewItem}/>
+              <Transaction items = {items}/>
+            </Route> */}
+          </Routes>
+        </div>
+        </Router>
+        
+      </div>
+      {/* <div align="center">
+        <h1>{result}</h1>
+        <button onClick={()=>dispatch({type:"SHOW"})}>แสดง</button>
+        <button onClick={()=>dispatch({type:"HIDE"})}>ซ่อน</button>
+      </div> */}
+     </DataContext.Provider>
+    
     );
 }
 export default App;

@@ -14,3 +14,20 @@ body{
   min-height: 100vh;
   margin: 0;
 }
+.horizontal-menu{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #e3a6a6;
+  text-align: center;
+}
+.horizontal-menu li{
+  display: inline-block;
+}
+.horizontal-menu a{
+  color: black;
+  text-decoration: none;
+  padding: 16px;
+  display: block;
+}
